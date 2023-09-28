@@ -9,11 +9,7 @@ class AuthorAdmin(admin.ModelAdmin):
     readonly_fields = ['show_photo']
 
     def show_photo(self, obj):
-        print(len({obj.photo.url}))
-        if len({obj.photo.url}) == 0:
-            return format_html(f'<img src = "/media/images/Default_Author.png" style = "max-height: 100px;">')
-        else:
-            return format_html(f'<img src = "{obj.photo.url}" style = "max-height: 100px;">')
+        return format_html(f'<img src = "{obj.photo.url}" style = "max-height: 100px;">')
     show_photo.short_description = 'Фото'
 
 
