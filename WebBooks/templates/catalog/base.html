@@ -11,10 +11,10 @@
     <div class="container-fluid p-1 bg-primary text-white text-center">
         <div class="row">
             <div class="col-2 text-start">
-                <img src="{% static 'image/pp100.jpg' %}" width="10" height="70">
+                <img src="{% static 'images/pp100.jpg' %}" width="70" height="70">
             </div>
             <div class="col-10">
-                <h1>Это шапка сайта с логотипом</h1>
+                <h1>Мир книг - печатные и электронные версии книг</h1>
             </div>
         </div>
     </div>
@@ -38,8 +38,8 @@
             <div class="col-2">
                 {% block sidebar %}
                 <nav class="nav flex-column">
-                    <a class="nav-link" href="{% url 'index' %}">Link 1</a>
-                    <a class="nav-link" href="{% url 'index' %}">Link 2</a>
+                    <a class="nav-link" href="{% url 'books' %}">Все книги</a>
+                    <a class="nav-link" href="{% url 'index' %}">Авторы</a>
                     <a class="nav-link" href="{% url 'index' %}">Link 3</a>
                 </nav>
                 {% endblock sidebar %}
