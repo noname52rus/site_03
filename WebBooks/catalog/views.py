@@ -1,11 +1,26 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Book, Author, BookInstance
 
 
 class BookListView(ListView):
     model = Book
     context_object_name = 'books'
+    paginate_by = 3
+
+
+class BookDetailView(DetailView):
+    model = Book
+    context_object_name = 'book'
+
+
+class AuthorListView(ListView):
+    model = Author
+    paginate_by = 4
+
+
+class AuthorDetailView(DetailView):
+    model = Author
 
 
 def index(request):

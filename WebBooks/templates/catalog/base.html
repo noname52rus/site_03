@@ -38,8 +38,8 @@
             <div class="col-2">
                 {% block sidebar %}
                 <nav class="nav flex-column">
-                    <a class="nav-link" href="{% url 'books' %}">Все книги</a>
-                    <a class="nav-link" href="{% url 'index' %}">Авторы</a>
+                    <a class="nav-link" href="{% url 'books-list' %}">Все книги</a>
+                    <a class="nav-link" href="{% url 'autors-list' %}">Авторы</a>
                     <a class="nav-link" href="{% url 'index' %}">Link 3</a>
                 </nav>
                 {% endblock sidebar %}
@@ -48,6 +48,26 @@
                 <div class="row text-center">
                     {% block content %}
                     {% endblock content %}
+                    <!--Пагинатор-->
+                    <div class="pagination">
+                        <span class="step-links">
+                        {% if page_obj.paginator.num_pages > 1 %}
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; Первая</a>
+                                <a href="?page= {{ page_obj.previous_page_number }}">Предыдущая</a>
+                            {% endif %}
+
+                            <span class="current">Стр. {{ page_obj.number }} из
+                                {{ page_obj.paginator.num_pages }}.</span>
+
+                            {% if page_obj.has_next %}
+                                <a href="?page= {{ page_obj.next_page_number }}">Следующая</a>
+                                <a href="?page= {{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+                            {% endif %}
+                        {% endif %}
+                        </span>
+                    </div>
+                    <!--Пагинатор-->
                 </div>
             </div>
         </div>
