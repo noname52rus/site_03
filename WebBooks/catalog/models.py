@@ -11,6 +11,9 @@ class Author(models.Model):
     photo = models.ImageField(upload_to='images', help_text='Загрузите фото автора', verbose_name='Фото автора',
                               null=True, blank=True)
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return self.last_name
 
@@ -67,6 +70,9 @@ class Book(models.Model):
     photo = models.ImageField(upload_to='images',
                               help_text='Введите изображение обложки',
                               verbose_name='Изображение обложки')
+
+    class Meta:
+        ordering = ['-id']
 
     def display_author(self):
         return ', '.join([author.last_name for author in self.author.all()])
