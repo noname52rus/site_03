@@ -1,9 +1,9 @@
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 from django.views import generic
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from .forms import Form_add_author, Form_edit_author
 from .models import Book, Author, BookInstance
 
@@ -150,3 +150,30 @@ def edit_author(request, id):
         form=Form_edit_author(instance=author)
         content = {"form": form}
         return render(request, "catalog/edit_author.html", content)
+
+
+# вызов стрнаицы для редактирования книг
+def edit_books(request):
+    book = Book.objects.all()
+    context = {'book': book}
+    return render(request, "catalog/edit_books.html", context)
+
+
+# класс для создания в БД новой записи о книге
+class BookCreate(CreateView):
+    model = Book
+    fields = '__all__'
+    success_url = reverse_lazy('edit_books')
+
+
+# класс для обновления в БД записи о книге
+class BookUpdate(UpdateView):
+    model = Book
+    fields = '__all__'
+    success_url = reverse_lazy('edit_books')
+
+
+# класс для удаления из БД записи о книге
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('edit_books')
