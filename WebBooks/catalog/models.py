@@ -19,6 +19,9 @@ class Author(models.Model):
     def __str__(self):
         return self.last_name
 
+    def get_absolute_url(self):
+        return reverse('author-detail', args=[str(self.id)])
+
 
 class Publisher(models.Model):
     name = models.CharField(max_length=20, verbose_name='Издательство', help_text='Введите наименование издательства')
